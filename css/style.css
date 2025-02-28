@@ -1,0 +1,162 @@
+.captcha-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    margin: 1rem 0;
+}
+
+.captcha {
+    margin: 0 1rem;
+    text-align: center;
+}
+.btn-xian{
+    color: #202020!important;
+    background-color: #93e8e1;
+    border-color: #93e8e1;
+
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+.no-pointer-events {
+    background-color: transparent!important;
+    color: #363636!important;
+}
+.d-none {
+    display: none!important;
+}
+.d-flex {
+    display: flex
+}
+.justify-content-center {
+    justify-content: center
+}
+.align-items-center {
+    align-items: center
+}
+.gap-1 {
+    gap: 1rem
+}
+.gap-2 {
+    gap: 2rem
+}
+#balance{
+    font-weight: bold;
+}
+.navbar-menu{
+    display: flex
+}
+@media screen and (max-width: 1023px) {
+    .navbar-menu {
+        justify-content: center;
+    }
+    .navbar-end {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+.navbar-burger {
+    display: none;
+    cursor: pointer;
+    flex-direction: column; /* Stack the lines vertically */
+    justify-content: center; /* Vertically center the lines */
+    align-items: center; /* Horizontally center the lines */
+    height: 50px; /* Set a specific height for the burger container */
+    width: 50px; /* Set a specific width for the burger container */
+}
+
+.navbar-burger div {
+    width: 25px; /* Adjust the width of the lines */
+    height: 3px; /* Thickness of the lines */
+    background-color: #333;
+    margin: 3px 0; /* Space between the lines */
+}
+
+
+@media (max-width: 1024px) {
+    .navbar-menu {
+        display: none;
+    }
+
+    .navbar-burger {
+        display: flex;
+    }
+}
+
+.navbar-menu.is-active {
+    display: block;
+}
+.text-align-center {
+    text-align: center
+}
+.divider{
+    width: 50%; /* Adjust width to your preference */
+    height: 2px; /* Adjust height for thickness */
+    background: linear-gradient(90deg, #ff4b4b, #ff944b, #6dc4b5, #4b4b4b);
+    margin: 0 auto; /* Center the divider */
+    border-radius: 10px; /* Optional: rounded corners */
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+.mb-0 {
+    margin-bottom: 0!important;
+}
+.bridge-section{
+    background: linear-gradient(135deg, #f0f4f8, #e2e8f0);
+}
+.mb-1 {
+    margin-bottom: 1rem!important;
+}
+#captchas-solved-count{
+    font-weight: bold;
+}
+.blink {
+    animation: blink-bg 0.5s infinite alternate;
+}
+
+@keyframes blink-bg {
+    from {
+        background-color: #f0f4f8;
+    }
+    to {
+        background-color: #00d1b2;
+    }
+}
+
+.xmr-command, .referral-link-input{
+    border-top-right-radius: 0;border-bottom-right-radius: 0;
+}
+.xmr-command-container{
+  width: 35rem;
+}
+.flex-column {
+    flex-direction: column!important;
+}
+
+.input-responsive{
+
+    width: 35rem;
+    max-width: 100%;
+
+}
+
+.mb-5 {
+    margin-bottom: 5rem!important;
+}
+
+.pb-1 {
+    padding-bottom: 1rem!important;
+}
+.text-center {
+    text-align: center!important;
+}
+.disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+    opacity: 0.5;
+}

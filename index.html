@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xian Airdrop</title>
+    <meta name="description" content="Airdrop for Xian Network">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="css/style.css?v=8">
+    <link rel="preconnect" href="https://www.google.com">
+    <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
+    <!-- png fav -->
+    <link rel="icon" type="image/png" href="img/logo.png">
+</head>
+
+<body>
+   
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="container">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="#">
+                    <strong>Xian Airdrop</strong>
+                </a>
+
+                <!-- Burger icon for mobile -->
+                <div class="navbar-burger" id="burger">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+
+            <div id="navbarBasicExample" class="navbar-menu">
+                <div class="navbar-end">
+
+                    <a class="navbar-item" href="https://xian.org"
+                        target="_blank">
+                        Xian Homepage
+                    </a>
+                    <a class="navbar-item" href="https://chromewebstore.google.com/detail/xian-wallet/kcimjjhplbcgkcnanijkolfillgfanlc?utm_source=ext_app_menu"
+                        target="_blank">
+                        Get Xian Wallet
+                    </a>
+                    
+                    <a class="navbar-item" href="https://t.me/xian_network" target="_blank">
+                        <img src="img/telegram.svg" alt="Telegram" width="30" height="30" style="filter: invert(1);">
+                    </a>
+                    <a class="navbar-item" href="https://github.com/xian-network" target="_blank">
+                        <img src="img/github-mark-white.svg" alt="GitHub" width="30" height="30" style="filter: invert(1);">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="section">
+        <div class="container">
+            <h1 class="title text-align-center mb-0">
+                Xian Airdrop
+            </h1>
+
+            <div class="divider"></div>
+            <p class="subtitle text-align-center">
+                Two Airdrops are currently available for Xian Network
+            </p>
+        </div>
+    </section>
+    <section class="section bridge-section" id="where-to-bridge">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-4">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="content">
+                                <h4 class="title text-center">Lamden</h4>
+                                <div class="text-center"><img src="img/image.png" alt="Lamden" class="mb-1" width="100"></div>
+                                <p>As a old TAU holder, you are elligible for an airdrop.</p>
+                                <button class="button is-primary is-fullwidth" id="claim-lamden">Continue</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-4">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="content">
+                                <h4 class="title text-center">RocketSwap</h4>
+                                <div class="text-center"><img src="img/rocketswap-dapp-exchanges-other-logo-166x166_88684c90047ff392b388f10609fa44ee.webp" alt="RocketSwap" class="mb-1" width="100"></div>
+                                <p>As a old RSWP holder, you are elligible for an airdrop.</p>
+                                <button class="button is-primary is-fullwidth" id="claim-rocketswap">Continue</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+    </section>
+    <section class="section bridge-section d-none" id="what-to-bridge">
+        <div class="container">
+            <h1 class="title text-align-center " style="font-size:1.5rem;">
+                To claim the airdrop, you need to import your old Lamden wallet into the Xian Wallet and connect it here.
+            </h1>
+            <div class="columns is-centered">
+                <div class="column is-4">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="content">
+                                <h4 class="title text-center">Connect Xian Wallet</h4>
+                                <div class="text-center"><img src="img/xian.svg" alt="Xian" class="mb-1" width="100"></div>
+                                <button class="button is-primary is-fullwidth mb-1" id="connect-wallet">Connect</button>
+                                <button class="button is-primary is-fullwidth disabled" id="claim-btn">Claim Airdrop</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>   
+             <!-- Back Button -->
+             <div class="columns is-centered">
+                <div class="column is-4">
+                    <button class="button is-primary is-fullwidth back-to-start">Back</button>
+                </div>
+            </div> 
+        </div>
+    </section>
+    
+
+   
+    <script src="https://unpkg.com/bulma-toast/dist/bulma-toast.min.js"></script>
+    <script src="js/dapp.js?v=21"></script>
+    <script src="js/main.js?v=1222226"></script>
+
+</body>
+
+</html>
