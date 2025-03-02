@@ -96,7 +96,7 @@ const XianWalletUtils = {
                             resolve(); // Resolve anyway to not block the flow
                         }
                     }
-                }, 2000); // 2 seconds timeout
+                }, 4000); // 2 seconds timeout
             }
         });
     },
@@ -112,7 +112,7 @@ const XianWalletUtils = {
                     this.state.walletInfo.requests.splice(index, 1);
                     reject(new Error('Xian Wallet Chrome extension not installed or not responding'));
                 }
-            }, 2000); // 2 seconds timeout
+            }, 4000); // 2 seconds timeout
 
             document.dispatchEvent(new CustomEvent('xianWalletGetInfo'));
         });
