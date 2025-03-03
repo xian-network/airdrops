@@ -4,6 +4,7 @@ const elements = {
     claimButton: document.getElementById('claim-btn'),
     claimRocketswap: document.getElementById('claim-rocketswap'),
     claimLamden: document.getElementById('claim-lamden'),
+    claimRocketswapStake: document.getElementById('claim-rocketswap-staked'),
     sectionWhereToBridge: document.getElementById('where-to-bridge'),
     sectionWhatToBridge: document.getElementById('what-to-bridge'),
     backToStart: document.querySelectorAll('.back-to-start'),
@@ -49,6 +50,9 @@ async function claim() {
         }
         else if (airdrop === "rocketswap") {
             url += "/claim_rocketswap_airdrop";
+        }
+        else if (airdrop === "rocketswap-stake") {
+            url += "/claim_rocketswap_staking_airdrop";
         }
 
         
@@ -116,6 +120,13 @@ elements.claimRocketswap.addEventListener('click', () => {
     elements.sectionWhatToBridge.classList.remove('d-none');
     currentPage = 2;
     airdrop = "rocketswap";
+});
+
+elements.claimRocketswapStake.addEventListener('click', () => {
+    elements.sectionWhereToBridge.classList.add('d-none');
+    elements.sectionWhatToBridge.classList.remove('d-none');
+    currentPage = 2;
+    airdrop = "rocketswap-stake";
 });
 
 elements.claimButton.addEventListener('click', claim);
