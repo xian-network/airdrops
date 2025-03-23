@@ -62,25 +62,19 @@ async function claim() {
                 showToast("Please connect your GitHub account first", "is-danger");
                 return;
             }
-            fetch(url + "/claim_github_airdrop", {
-                method: "POST",
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    xian_address: address,
-                    signature: signature,
-                    github_token: githubToken
-                })
-            })
-            .then(res => res.json())
+            url += "/claim_github_airdrop";
+            fetch(url+`?xian_address=${address}&signature=${signature}&github_token=${githubToken}`)
+            .then(response => response.json())
             .then(data => {
+                console.log(data);
                 if (data.success) {
                     showToast(data.message, "is-success");
                 } else {
                     showToast(data.message, "is-danger");
                 }
             })
-            .catch(() => showToast("Error sending request", "is-danger"));
             return;
+               
         }
 
         fetch(url+`?xian_address=${address}&signature=${signature}`)
