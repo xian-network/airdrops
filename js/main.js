@@ -8,6 +8,8 @@ const elements = {
     sectionWhereToBridge: document.getElementById('where-to-bridge'),
     sectionWhatToBridge: document.getElementById('what-to-bridge'),
     backToStart: document.querySelectorAll('.back-to-start'),
+    claimGithub: document.getElementById('claim-github'),
+    connectGithub: document.getElementById('connect-github'),
 };
 
 // State Variables
@@ -15,6 +17,7 @@ let address = '';
 let connected = false;
 let currentPage = 1;
 let airdrop = "";
+let githubToken = null;
 
 // Initialize Xian Wallet
 XianWalletUtils.init('https://node.xian.org');
@@ -54,8 +57,32 @@ async function claim() {
         else if (airdrop === "rocketswap-stake") {
             url += "/claim_rocketswap_staking_airdrop";
         }
+        else if (airdrop === "github") {
+            if (!githubToken) {
+                showToast("Please connect your GitHub account first", "is-danger");
+                return;
+            }
+            fetch(url + "/claim_github_airdrop", {
+                method: "POST",
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    xian_address: address,
+                    signature: signature,
+                    github_token: githubToken
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    showToast(data.message, "is-success");
+                } else {
+                    showToast(data.message, "is-danger");
+                }
+            })
+            .catch(() => showToast("Error sending request", "is-danger"));
+            return;
+        }
 
-        
         fetch(url+`?xian_address=${address}&signature=${signature}`)
         .then(response => response.json())
         .then(data => {
@@ -70,7 +97,6 @@ async function claim() {
     .catch(error => {
         showToast("Error signing message", "is-danger");
     });
-
 }
 
 // Event Listeners
@@ -79,12 +105,10 @@ elements.connectWallet.addEventListener('click', () => {
         .then((info) => {
             console.log('Wallet info:', info);
             
-            
             if (info.locked) {
                 showToast("Please unlock your Xian wallet", "is-danger");
             } else {
-                if (info.chainId !== 'xian-network-3')
-                {
+                if (info.chainId !== 'xian-network-3') {
                     showToast("Please switch to the Xian Mainnet", "is-danger");
                     return;
                 }
@@ -107,33 +131,66 @@ elements.backToStart.forEach((element) => {
     });
 });
 
-elements.claimLamden.addEventListener('click', () => {
+elements.claimLamden?.addEventListener('click', () => {
     elements.sectionWhereToBridge.classList.add('d-none');
     elements.sectionWhatToBridge.classList.remove('d-none');
     currentPage = 2;
     airdrop = "lamden";
-
 });
 
-elements.claimRocketswap.addEventListener('click', () => {
+elements.claimRocketswap?.addEventListener('click', () => {
     elements.sectionWhereToBridge.classList.add('d-none');
     elements.sectionWhatToBridge.classList.remove('d-none');
     currentPage = 2;
     airdrop = "rocketswap";
 });
 
-elements.claimRocketswapStake.addEventListener('click', () => {
+elements.claimRocketswapStake?.addEventListener('click', () => {
     elements.sectionWhereToBridge.classList.add('d-none');
     elements.sectionWhatToBridge.classList.remove('d-none');
     currentPage = 2;
     airdrop = "rocketswap-stake";
 });
 
-elements.claimButton.addEventListener('click', claim);
+elements.claimGithub?.addEventListener('click', () => {
+    // redirect to GitHub OAuth flow
+    const client_id = "Ov23liIrn9nThui8Ccgy";
+    const redirect_uri = window.location.origin;
+    const scope = "read:user";
+    window.location.href = `https://github.com/login/oauth/authorize?client_id=${client_id}&redirect_uri=${encodeURIComponent(redirect_uri)}&scope=${scope}`;
+});
 
+// To be called after redirect
+window.processGithubCode = function(code) {
+    fetch(`https://airdropsapi.xian.org/github_token_exchange?code=${code}`)
+        .then(res => res.json())
+        .then(data => {
+            if (data.success && data.token) {
+                githubToken = data.token;
+                showToast("GitHub connected successfully!", "is-success");
+                elements.connectGithub.classList.add("disabled");
+                airdrop = "github";
+                elements.sectionWhereToBridge.classList.add('d-none');
+                elements.sectionWhatToBridge.classList.remove('d-none');
+                elements.claimButton.classList.remove("disabled");
+            } else {
+                showToast("GitHub authentication failed", "is-danger");
+            }
+        })
+        .catch(() => showToast("Error during GitHub auth", "is-danger"));
+};
+
+elements.claimButton.addEventListener('click', claim);
 
 // Burger menu
 document.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const githubCode = urlParams.get('code');
+    if (githubCode) {
+        window.history.replaceState({}, document.title, window.location.pathname); // Clean up URL
+        window.processGithubCode(githubCode);
+    }
+
     const burger = document.getElementById('burger');
     const menu = document.getElementById('navbarBasicExample');
 
