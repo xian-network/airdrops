@@ -172,7 +172,6 @@ window.processGithubCode = function(code) {
                 airdrop = "github";
                 elements.sectionWhereToBridge.classList.add('d-none');
                 elements.sectionWhatToBridge.classList.remove('d-none');
-                elements.claimButton.classList.remove("disabled");
             } else {
                 showToast("GitHub authentication failed", "is-danger");
             }
